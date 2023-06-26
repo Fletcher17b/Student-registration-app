@@ -43,6 +43,11 @@ public class comfirmation extends javax.swing.JFrame {
         });
 
         back_btn.setText("Volver");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,10 +83,19 @@ public class comfirmation extends javax.swing.JFrame {
     
     private void Yes_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Yes_btnActionPerformed
        
+        int value = 1;
+        reference.setexit_correctly(value);
         
-        reference.dispose();
+        //reference.dispose();
+        reference.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_Yes_btnActionPerformed
+
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+        // TODO add your handling code here:
+        reference.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_back_btnActionPerformed
    
     /**
      * @param args the command line arguments

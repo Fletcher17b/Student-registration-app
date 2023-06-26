@@ -8,6 +8,12 @@ public class New_student extends javax.swing.JFrame {
     /**
      * Creates new form New_note
      */
+    public int getExit_correctly() {
+        return exit_correctly;
+    }
+
+    private int exit_correctly;
+    
     public New_student() {
         initComponents();
     }
@@ -100,7 +106,7 @@ public class New_student extends javax.swing.JFrame {
                             .addComponent(last_name_input)
                             .addComponent(ID_input)
                             .addComponent(GPA_input, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(age_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(age_input, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,17 +144,29 @@ public class New_student extends javax.swing.JFrame {
 
     private void done_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_done_btnActionPerformed
         // TODO add your handling code here:
-        
         comfirmation comfirm = new comfirmation(this);
         comfirm.setVisible(true);
         comfirm.show();
+               
         
+        if ( getExit_correctly() == 1) {
+            done yay = new done();
+            yay.show();
+            
+        } else {
+            
+        }
 
-         
         
         
+     
     }//GEN-LAST:event_done_btnActionPerformed
 
+    public void setexit_correctly(int exit_correctly)
+    {
+        this.exit_correctly = exit_correctly;
+    }
+    
     private void name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_inputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_inputActionPerformed
