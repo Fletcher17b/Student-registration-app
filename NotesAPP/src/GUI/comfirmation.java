@@ -1,13 +1,19 @@
 package GUI;
 
 public class comfirmation extends javax.swing.JFrame {
-
+    
+    private New_student reference; 
     /**
-     * Creates new form comfirmation
+     * Creates new form confirmation
+     * 
      */
-    public comfirmation() {
+    public comfirmation(New_student reference) {
         initComponents();
-        
+        this.reference = reference;
+    }
+
+    private comfirmation() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
   
@@ -25,6 +31,7 @@ public class comfirmation extends javax.swing.JFrame {
         back_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(800, 500));
 
         jLabel1.setText("Seguro que has terminado?");
 
@@ -67,10 +74,15 @@ public class comfirmation extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void Yes_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Yes_btnActionPerformed
-        // TODO add your handling code here:
+       
+        
+        reference.dispose();
+        this.dispose();
     }//GEN-LAST:event_Yes_btnActionPerformed
-
+   
     /**
      * @param args the command line arguments
      */
