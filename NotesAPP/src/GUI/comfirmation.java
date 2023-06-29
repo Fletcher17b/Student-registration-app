@@ -2,20 +2,22 @@ package GUI;
 
 public class comfirmation extends javax.swing.JFrame {
     
-    private New_student reference; 
+    private New_student reference;
+    public int comf1;
+    
     /**
      * Creates new form confirmation
      * 
+     * @param reference
      */
     public comfirmation(New_student reference) {
         initComponents();
         this.reference = reference;
-    }
+    }    
 
     private comfirmation() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
   
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,7 +32,7 @@ public class comfirmation extends javax.swing.JFrame {
         Yes_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(800, 500));
 
         jLabel1.setText("Seguro que has terminado?");
@@ -82,19 +84,17 @@ public class comfirmation extends javax.swing.JFrame {
     
     
     private void Yes_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Yes_btnActionPerformed
-       
-        int value = 1;
-        reference.setexit_correctly(value);
-        
-        //reference.dispose();
-        reference.setVisible(false);
-        this.dispose();
+       comf1 = 1;
+       dispose(); 
     }//GEN-LAST:event_Yes_btnActionPerformed
 
+    
+    
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         // TODO add your handling code here:
-        reference.setVisible(true);
-        dispose();
+        
+        comf1 = 2;
+        dispose(); 
     }//GEN-LAST:event_back_btnActionPerformed
    
     /**
@@ -126,6 +126,7 @@ public class comfirmation extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new comfirmation().setVisible(true);
             }

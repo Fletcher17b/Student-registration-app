@@ -1,8 +1,23 @@
 package classes;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 
 public class student {
 
+    
+    private int birthyear;
+    private int birthmonth;
+    private int birthday;
+    private String name;
+    private String last_name;
+    private String ID;
+    private String genero;
+    private int edad;
+    private float gpa;
+    
+    
     public student() {
     }
 
@@ -55,11 +70,44 @@ public class student {
         this.gpa = gpa;
     }
     
-    private String name;
-    private String last_name;
-    private String ID;
-    private int edad;
-    private float gpa;
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getBirthyear() {
+        return birthyear;
+    }
+
+    public void setBirthyear(int birthyear) {
+        this.birthyear = birthyear;
+    }
+
+    public int getBirthmonth() {
+        return birthmonth;
+    }
+
+    public void setBirthmonth(int birthmonth) {
+        this.birthmonth = birthmonth;
+    }
+
+    public int getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(int birthday) {
+        this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "student{" + "birthyear=" + birthyear + ", birthmonth=" + birthmonth + ", birthday=" + birthday + ", name=" + name + ", last_name=" + last_name + ", ID=" + ID + ", genero=" + genero + ", edad=" + edad + ", gpa=" + gpa + '}';
+    }
+    
+   
     
     
    
