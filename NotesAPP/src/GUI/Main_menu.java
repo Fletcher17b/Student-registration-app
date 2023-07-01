@@ -2,6 +2,7 @@ package GUI;
 
 import classes.student;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -185,6 +186,32 @@ public class Main_menu extends javax.swing.JFrame {
         this.show_students();
     }//GEN-LAST:event_btn_refreshActionPerformed
 
+    /*
+    private void showTable(){
+        DefaultTableModel tbl=new DefaultTableModel();
+        String []title = {"Nombres", "Apellidos", "Cumpleaños", "Edades", "Sexos"};
+        tbl.setColumnIdentifiers(title);
+        for(Persona p:lista){
+            Object[] datos = new Object[5];
+            datos[0] = p.getNombre();
+            datos[1] = p.getApellido();
+            datos[2] = p.getfNac();
+            datos[3] = p.getAge();
+            datos[4] = p.getSex();
+            tbl.addRow(datos);
+        }
+        this.tblRegistros.setModel(tbl);
+        
+    }
+    */
+    
+    private void showTable() {
+        DefaultTableModel tbl=new DefaultTableModel();
+        
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */

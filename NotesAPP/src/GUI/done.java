@@ -9,13 +9,19 @@ package GUI;
  * @author MarioJr
  */
 public class done extends javax.swing.JFrame {
-
+    New_student student1 = new New_student();
     /**
      * Creates new form done
      */
     public done() {
         initComponents();
     }
+    
+    public done(New_student student1) {
+        this.student1 = student1; 
+        initComponents();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +76,7 @@ public class done extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        student1.dispose();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

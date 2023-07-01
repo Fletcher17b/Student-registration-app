@@ -4,64 +4,70 @@
  */
 package classes;
 import java.time.LocalDate;
-import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 /**
  *
  * @author MarioJr
  */
 public class calendarconfigs {
-    LocalDate currentDate = LocalDate.now();
     
     public calendarconfigs() {    
     }
     
-    private int evaluateMonth(int month)
+    public int evaluateMonth(int month, int year)
     {
-        int days = 30;
-        switch(month){
-            case 2: 
-                
-                          
-            case 12:
-                days =31;
-                break;
-            default: 
-                days = 30;
-                break;
-        }
-        
+        int days;
+//        
+//        if ( month == 2 ) {
+//           days = this.isleapyear(year);
+//        } else if(month == 12) {
+//            days = 31;
+//        }
+       days = switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> 31;
+            case 2 -> this.isleapyear(year);
+            default -> 30;
+        };
+     
+        System.out.println("func: evualtemonth, retorna: "+days);
+        System.out.println("month: "+month);
+        System.out.println("year: "+year);
+         System.out.println("break line");
         return days;
     }
     
-    private int isleapyear(int year) 
+    public int isleapyear(int year) 
     {
         int numberofdays;
         
-        if ( year %400 == 0 && year % 4 == 0) {
+        if ( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
+                {
                     numberofdays = 29;
-                } else {
-                    numberofdays = 28;
-                }      
-        
-        
-        
+                } else { numberofdays = 28; }    
+        System.out.println("func: isleapyear, retorna:  "+numberofdays);
+         System.out.println("year: "+year);
+          System.out.println("break line");
         return numberofdays;
     }
     
     
     
-    public DefaultComboBoxModel showday()
+    public DefaultComboBoxModel showday(int mes,int year)
     {
         DefaultComboBoxModel dia = new DefaultComboBoxModel();
-        int month = currentDate.getMonthValue();
-        int numberofdays = evaluateMonth(month);
-        
+        int numberofdays = this.evaluateMonth(mes, year);
+       
         for ( int i = 1; i <= numberofdays; i ++)
         {
             dia.addElement(i);
         }
-       
+        
+        System.out.println("func: showday, retorna:  "+numberofdays);
+        System.out.println("nes: "+mes);
+        System.out.println("year: "+year);
+        System.out.println("break line");
+        System.out.println("cycle line");
+        
         
         return dia;
     }

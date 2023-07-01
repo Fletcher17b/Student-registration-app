@@ -3,6 +3,8 @@ import classes.calendarconfigs;
 import classes.student;
 import classes.genero;
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -55,14 +57,14 @@ public class New_student extends javax.swing.JFrame {
         javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
         GPA_input = new javax.swing.JTextField();
         Clear_btn = new javax.swing.JButton();
-        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+        javax.swing.JLabel age_label = new javax.swing.JLabel();
         age_input = new javax.swing.JTextField();
         cmbbox_month = new javax.swing.JComboBox<>();
         cmbbox_day = new javax.swing.JComboBox<>();
         cmbbox_year = new javax.swing.JComboBox<>();
-        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        javax.swing.JLabel genre_label = new javax.swing.JLabel();
         cmbbox_genre = new javax.swing.JComboBox();
-        jLabel7 = new javax.swing.JLabel();
+        this_a_month = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -102,7 +104,7 @@ public class New_student extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Age");
+        age_label.setText("Age");
 
         cmbbox_month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbbox_month.addActionListener(new java.awt.event.ActionListener() {
@@ -119,8 +121,13 @@ public class New_student extends javax.swing.JFrame {
         });
 
         cmbbox_year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbbox_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbbox_yearActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Genre");
+        genre_label.setText("Genre");
 
         cmbbox_genre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hombre", "Mujer", "Otro" }));
         cmbbox_genre.addActionListener(new java.awt.event.ActionListener() {
@@ -129,49 +136,49 @@ public class New_student extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Mes");
+        this_a_month.setText("Mes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addComponent(done_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Clear_btn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(age_label)
+                            .addComponent(genre_label))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(done_btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Clear_btn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(34, 34, 34)
+                                .addComponent(cmbbox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cmbbox_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbbox_day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbbox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(name_input)
-                                        .addComponent(last_name_input)
-                                        .addComponent(ID_input)
-                                        .addComponent(GPA_input, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
-                                    .addComponent(cmbbox_genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(age_input, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                                        .addGap(32, 32, 32)
+                                        .addComponent(this_a_month, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbbox_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(12, 12, 12)
+                                .addComponent(cmbbox_day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(name_input)
+                                .addComponent(last_name_input)
+                                .addComponent(ID_input)
+                                .addComponent(GPA_input, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                            .addComponent(cmbbox_genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(age_input, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,20 +199,24 @@ public class New_student extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(GPA_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbbox_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbbox_day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbbox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(age_label)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmbbox_day, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbbox_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbbox_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(this_a_month, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addComponent(age_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(genre_label)
                     .addComponent(cmbbox_genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,8 +239,9 @@ public class New_student extends javax.swing.JFrame {
            }
            if (comfirm1 == JOptionPane.YES_OPTION)
            {
-              done yay = new done();
+              done yay = new done(this);
               yay.show();
+              int age1 = this.calculate_age();
               this.addtolist();
        
            }
@@ -242,12 +254,7 @@ public class New_student extends javax.swing.JFrame {
         */
         
     }//GEN-LAST:event_done_btnActionPerformed
-
-    
-    
-    
-    
-    
+ 
     
     private void name_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_inputActionPerformed
         // TODO add your handling code here:
@@ -273,16 +280,20 @@ public class New_student extends javax.swing.JFrame {
     {
         this.cmbbox_year.setModel(calendarconfigs1.showYear());
         this.cmbbox_month.setModel(calendarconfigs1.showMonth());
-        this.cmbbox_day.setModel(calendarconfigs1.showday());
+        this.cmbbox_day.setModel(calendarconfigs1.showday(Integer.parseInt(cmbbox_month.getSelectedItem().toString()),Integer.parseInt(cmbbox_year.getSelectedItem().toString())));
     }
     
     private void cmbbox_monthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbox_monthActionPerformed
-        // TODO add your handling code here:
+        this.cmbbox_day.setModel(calendarconfigs1.showday(Integer.parseInt(cmbbox_month.getSelectedItem().toString()),Integer.parseInt(cmbbox_year.getSelectedItem().toString())));
     }//GEN-LAST:event_cmbbox_monthActionPerformed
 
     private void cmbbox_dayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbbox_dayItemStateChanged
-        // TODO add your handling code here:
+      //  this.cmbbox_day.setModel(calendarconfigs1.showday(Integer.parseInt(cmbbox_month.getSelectedItem().toString()),Integer.parseInt(cmbbox_year.getSelectedItem().toString())));
     }//GEN-LAST:event_cmbbox_dayItemStateChanged
+
+    private void cmbbox_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbox_yearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbbox_yearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,17 +331,26 @@ public class New_student extends javax.swing.JFrame {
         });
     }
     
+    private int calculate_age(){
+        int year_of_birth = Integer.parseInt(cmbbox_year.getSelectedItem().toString());
+        int current_year = LocalDate.now().getYear();
+        int age;
+        age = current_year - year_of_birth;
+        
+        return age;
+    }
+    
      private void addtolist()
     {
         student1 = new student();
         student1.setName(name_input.getText());
-        student1.setLast_name(age_input.getText());
+        student1.setLast_name(last_name_input.getText());
         student1.setID(ID_input.getText());
         student1.setGpa(parseFloat(GPA_input.getText()));
-        
-        
-        
-        
+        student1.setEdad(this.calculate_age());
+        student1.setBirthday(parseInt(cmbbox_day.getSelectedItem().toString()));
+        student1.setBirthmonth(parseInt(cmbbox_month.getSelectedItem().toString()));
+        student1.setBirthyear(parseInt(cmbbox_year.getSelectedItem().toString()));
         
         genero gen = genero.Hombre;
         
@@ -354,11 +374,11 @@ public class New_student extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbbox_month;
     private javax.swing.JComboBox<String> cmbbox_year;
     private javax.swing.JButton done_btn;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField last_name_input;
     private javax.swing.JTextField name_input;
+    private javax.swing.JLabel this_a_month;
     // End of variables declaration//GEN-END:variables
 }
