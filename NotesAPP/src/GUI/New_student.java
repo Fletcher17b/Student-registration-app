@@ -1,7 +1,6 @@
 package GUI;
 import classes.calendarconfigs;
 import classes.student;
-import classes.genero;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
@@ -19,20 +18,20 @@ public class New_student extends javax.swing.JFrame {
     
     student student1;
     ArrayList<student> list = new ArrayList<>();
+    Main_menu Main_menu1 = new Main_menu();
    
     public New_student() {
         initComponents();
         dates();
     }
     
-    public New_student(ArrayList<student> list) 
+    public New_student(ArrayList<student> list, Main_menu Main_menu1) 
     {
         initComponents();
         dates();
         this.list = list;
+        this.Main_menu1 = Main_menu1;
         
-
-
     }
 
     /**
@@ -243,16 +242,10 @@ public class New_student extends javax.swing.JFrame {
               yay.show();
               int age1 = this.calculate_age();
               this.addtolist();
+              Main_menu1.showTable();
        
-           }
+           }  
            
-        
-         /*
-        comfirmation comfirm = new comfirmation(this);
-        comfirm.setVisible(true);
-        comfirm.show();
-        */
-        
     }//GEN-LAST:event_done_btnActionPerformed
  
     
@@ -352,14 +345,22 @@ public class New_student extends javax.swing.JFrame {
         student1.setBirthmonth(parseInt(cmbbox_month.getSelectedItem().toString()));
         student1.setBirthyear(parseInt(cmbbox_year.getSelectedItem().toString()));
         
-        genero gen = genero.Hombre;
         
-        if (cmbbox_genre.getSelectedIndex() == 0)
-           {
-          gen = genero.Hombre;
+        switch(cmbbox_genre.getSelectedIndex())
+        {
+            case 0:               
+                student1.setGenero("Hombre");
+                break;
+            case 1:
+                student1.setGenero("Mujer");
+                break;
+            case 2:
+                student1.setGenero("Otro");
+                break;
+                
         }
-        
-        list.add(student1);
+     
+         list.add(student1);
 
     }
         
