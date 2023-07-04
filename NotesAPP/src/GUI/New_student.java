@@ -1,4 +1,6 @@
 package GUI;
+import GUI.Alerts.done;
+import GUI.Alerts.Errors_notifs;
 import classes.calendarconfigs;
 import classes.student;
 import static java.lang.Float.parseFloat;
@@ -230,7 +232,7 @@ public class New_student extends javax.swing.JFrame {
     private void done_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_done_btnActionPerformed
         // TODO add your handling code here:
         
-        
+       
         int comfirm1 = JOptionPane.showConfirmDialog(null,  "Seguro que has terminado?", "", JOptionPane.YES_NO_OPTION);
            if (comfirm1 == JOptionPane.NO_OPTION)
            {
@@ -238,13 +240,31 @@ public class New_student extends javax.swing.JFrame {
            }
            if (comfirm1 == JOptionPane.YES_OPTION)
            {
-              done yay = new done(this);
-              yay.show();
-              int age1 = this.calculate_age();
-              this.addtolist();
-              Main_menu1.showTable();
+          //     int all_ok; // variable stores the error number returned from addtolist(), if everything is working fine it should return 0
+           //    all_ok = this.addtolist();
+               
+               switch(this.addtolist()) {
+                   case 0:
+                        done yay = new done(this);
+                        yay.show(); 
+                     //  int age1 = this.calculate_age();             
+                        Main_menu1.showTable();
+                       break;
+                   case 1:
+                       Errors_notifs error1 = new Errors_notifs("ID already in existance");
+                       error1.setVisible(true);
+                       break;
+                   case 2: 
+                       Errors_notifs error2 = new Errors_notifs("Invalid GPA score");
+                       error2.setVisible(true);
+                       break;
+               }
+                                         
+              
        
            }  
+           
+            
            
     }//GEN-LAST:event_done_btnActionPerformed
  
@@ -324,26 +344,41 @@ public class New_student extends javax.swing.JFrame {
         });
     }
     
-    private int calculate_age(){
-        int year_of_birth = Integer.parseInt(cmbbox_year.getSelectedItem().toString());
-        int current_year = LocalDate.now().getYear();
-        int age;
-        age = current_year - year_of_birth;
-        
-        return age;
-    }
-    
-     private void addtolist()
+
+     private int addtolist()
     {
         student1 = new student();
+        int errors = 0;
         student1.setName(name_input.getText());
         student1.setLast_name(last_name_input.getText());
-        student1.setID(ID_input.getText());
-        student1.setGpa(parseFloat(GPA_input.getText()));
-        student1.setEdad(this.calculate_age());
+        student1.setID(ID_input.getText());      
+        student1.setEdad(student1.calculate_age(Integer.parseInt(cmbbox_year.getSelectedItem().toString())));
+        
         student1.setBirthday(parseInt(cmbbox_day.getSelectedItem().toString()));
         student1.setBirthmonth(parseInt(cmbbox_month.getSelectedItem().toString()));
         student1.setBirthyear(parseInt(cmbbox_year.getSelectedItem().toString()));
+        
+        
+        
+        
+        for(student p: list)
+        {
+            if(student1.getID().equals(p.getID())) {
+                ID_input.setText("");              
+                errors = errors + 1; 
+                return errors;               
+            }
+        }
+               
+        student1.setGpa(parseFloat(GPA_input.getText().replace(',', '.')));       
+        
+        if (student1.getGpa()> 5  || student1.getGpa()< 0 )
+        {
+            GPA_input.setText("");  
+            errors = errors + 2;
+            return errors;
+        }
+        
         
         
         switch(cmbbox_genre.getSelectedIndex())
@@ -359,9 +394,13 @@ public class New_student extends javax.swing.JFrame {
                 break;
                 
         }
-     
-         list.add(student1);
-
+        
+        if (errors == 0) {
+          list.add(student1);   
+        }
+         
+      System.out.println(errors);
+      return errors;
     }
         
 

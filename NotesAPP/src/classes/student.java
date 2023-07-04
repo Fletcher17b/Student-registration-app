@@ -101,6 +101,12 @@ public class student {
     public void setBirthday(int birthday) {
         this.birthday = birthday;
     }
+    
+    public int calculate_age(int age_input){
+        int age;
+        age = LocalDate.now().getYear() - age_input;      
+        return age;
+    }
 
     @Override
     public String toString() {

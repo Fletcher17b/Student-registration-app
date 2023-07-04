@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Edit;
 import classes.student;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Edit_Student_frame extends javax.swing.JFrame {
     ArrayList<student> list3 = new ArrayList<>();
-    
+    student match = new student();
     String ID;
     
     /**
@@ -61,7 +61,8 @@ public class Edit_Student_frame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         back_btn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(800, 600));
 
         Student_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,12 +85,22 @@ public class Edit_Student_frame extends javax.swing.JFrame {
         });
 
         refresh_btn.setText("Refresh");
+        refresh_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refresh_btnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Registered Students");
 
         jLabel2.setText("Input Student ID");
 
         back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,20 +154,39 @@ public class Edit_Student_frame extends javax.swing.JFrame {
 
     private void ok_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_btnActionPerformed
         this.ID = ID_input.getText(); 
+        boolean found = false;
         
         for( student p: list3) {
-            if ((ID.equals(p.getID()))) {
-                Student_found x3 = new Student_found();
+            if ((ID.equals(p.getID())))
+            {               
+                this.match = p;
+                found = true;
+                
+                Student_found x3 = new Student_found(match,this);
                 x3.setVisible(true);
-            } else {                
-                Not_found x2 = new Not_found();
-                x2.setVisible(true);
-            }
+                
+                break;
+            } 
             
+        }
+        
+        if (found == false)
+        {
+            Not_found x2 = new Not_found();
+            x2.setVisible(true);
         }
         
         
     }//GEN-LAST:event_ok_btnActionPerformed
+
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_back_btnActionPerformed
+
+    private void refresh_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_btnActionPerformed
+        // TODO add your handling code here:
+        this.assign_table_data();
+    }//GEN-LAST:event_refresh_btnActionPerformed
 
     /**
      * @param args the command line arguments
